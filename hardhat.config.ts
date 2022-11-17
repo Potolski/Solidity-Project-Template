@@ -14,8 +14,8 @@ const config: HardhatUserConfig = {
     mumbai: {
       url: "https://rpc-mumbai.maticvigil.com",
       accounts: [
-        process.env.TEST_PRIVATE_KEY
-          ? process.env.TEST_PRIVATE_KEY
+        process.env.MUMBAI_PRIVATE_KEY
+          ? process.env.MUMBAI_PRIVATE_KEY
           : "0x0000000000000000000000000000000000000000000000000000000000000000",
       ],
     },
@@ -23,14 +23,32 @@ const config: HardhatUserConfig = {
       url: "https://polygon-rpc.com/",
       chainId: 137,
       accounts: [
+        process.env.POLYGON_PRIVATE_KEY
+          ? process.env.POLYGON_PRIVATE_KEY
+          : "0x0000000000000000000000000000000000000000000000000000000000000000",
+      ],
+    },
+    mainnet: {
+      url: `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      accounts: [
         process.env.MAIN_PRIVATE_KEY
           ? process.env.MAIN_PRIVATE_KEY
           : "0x0000000000000000000000000000000000000000000000000000000000000000",
       ],
     },
+    goerli: {
+      url: `https://goerli.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      accounts: [
+        process.env.GOERLI_PRIVATE_KEY
+          ? process.env.GOERLI_PRIVATE_KEY
+          : "0x0000000000000000000000000000000000000000000000000000000000000000",
+      ],
+    },
   },
   etherscan: {
-    apiKey: process.env.POLYGONSCAN_API_KEY,
+    apiKey: process.env.ETHERSCAN_API_KEY
+      ? process.env.ETHERSCAN_API_KEY
+      : process.env.POLYGONSCAN_API_KEY,
   },
   gasReporter: {
     token: "MATIC",
